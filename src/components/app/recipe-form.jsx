@@ -94,7 +94,7 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
             <Label htmlFor="title">Recipe Title</Label>
             <Input
               id="title"
-              placeholder="e.g. Spaghetti Carbonara"
+              placeholder="e.g. Pepperoni pizza"
               value={form.title}
               onChange={(e) => set("title", e.target.value)}
               aria-invalid={!!errors.title}
@@ -193,7 +193,7 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
         <CardContent className="space-y-3">
           <div className="flex gap-2">
             <Input
-              placeholder="e.g. 200g spaghetti"
+              placeholder="e.g. 200g All purpose flour"
               value={ingredientInput}
               onChange={(e) => setIngredientInput(e.target.value)}
               onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addIngredient() }}}
