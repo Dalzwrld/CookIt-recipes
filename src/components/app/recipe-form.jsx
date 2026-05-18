@@ -50,7 +50,7 @@ export default function RecipeForm({ onSubmit, existingData }) {
     setLoading(true);
     try {
       await onSubmit(form);
-      navigate('/destinations');
+      navigate('/recipes');
     } catch {
       setError('Something went wrong. Please try again.');
     } finally {
