@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Toaster } from '@/components/ui/sonner'
 import { toast } from 'sonner'
 
 import Navbar from './components/app/navbar'
@@ -11,58 +12,56 @@ import EditRecipe from './pages/edit-recipe'
 import RecipeDetail from './pages/recipe-detail'
 
 export default function App() {
-  const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [recipes, setRecipes] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     fetch('http://localhost:3000/recipes')
       .then((res) => {
-        if (!res.ok) throw new Error();
-        return res.json();
+        if (!res.ok) throw new Error()
+        return res.json()
       })
       .then(setRecipes)
-      .catch(() => 
-        setError('Could not connect to the server.'),
-        toast.error("Could not load recipes.")
-    )
-      .finally(() => setLoading(false));
-  }, []);
+      .catch(() => {
+        setError('Could not connect to the server.')
+        toast.error('Could not load recipes.')
+      })
+      .finally(() => setLoading(false))
+  }, [])
 
   async function handleAdd(formData) {
     const res = await fetch('http://localhost:3000/recipes', {
       method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json' 
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
-    });
-    if (!res.ok) throw new Error('Failed to add');
-    const newRecipe = await res.json();
-    setRecipes((prev) => [...prev, newRecipe]);
-    toast.success("Recipe added successfully!");
+    })
+    if (!res.ok) throw new Error('Failed to add')
+    const newRecipe = await res.json()
+    setRecipes((prev) => [...prev, newRecipe])
+    toast.success('Recipe added successfully!')
   }
 
   async function handleEdit(formData) {
-    const res = await fetch(`${'http://localhost:3000/recipes'}/${formData.id}`, {
+    const res = await fetch(`http://localhost:3000/recipes/${formData.id}`, {
       method: 'PATCH',
-      headers: { 
-        'Content-Type': 'application/json' 
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
-    });
-    if (!res.ok) throw new Error('Failed to update');
-    const updated = await res.json();
-    setRecipes((prev) => prev.map((r) => (r.id === updated.id ? updated : r)));
-    toast.success("Recipe updated successfully!");
+    })
+    if (!res.ok) throw new Error('Failed to update')
+    const updated = await res.json()
+    setRecipes((prev) => prev.map((r) => (r.id === updated.id ? updated : r)))
+    toast.success('Recipe updated successfully!')
   }
 
   async function handleDelete(id) {
-    const res = await fetch(`${'http://localhost:3000/recipes'}/${id}`, { method: 'DELETE' });
-    if (!res.ok) throw new Error('Failed to delete');
-    setRecipes((prev) => prev.filter((r) => r.id !== id));
-    toast.success("Recipe deleted.");
+    const res = await fetch(`http://localhost:3000/recipes/${id}`, { method: 'DELETE' })
+    if (!res.ok) throw new Error('Failed to delete')
+    setRecipes((prev) => prev.filter((r) => r.id !== id))
+    toast.success('Recipe deleted.')
   }
+
+  const categories = ['All', ...new Set(recipes.map((r) => r.category))]
 
   if (loading) {
     return (
@@ -71,7 +70,7 @@ export default function App() {
           Loading your recipes…
         </p>
       </div>
-    );
+    )
   }
 
   if (error) {
@@ -84,19 +83,27 @@ export default function App() {
           <p className="text-[#6b8fa8] max-w-md leading-relaxed">{error}</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
-        <main className="flex-1">
         <Navbar />
+        <main className="flex-1">
           <Routes>
             <Route path="/"
-              element={<Home recipes={recipes} onDelete={handleDelete} />} />
+              element={<Home recipes={recipes} loading={loading} onDelete={handleDelete} />} />
             <Route path="/recipes"
-              element={<Recipes recipes={recipes} onEdit={handleEdit} onDelete={handleDelete} />} />
+              element={
+                <Recipes
+                  recipes={recipes}
+                  categories={categories}
+                  loading={loading}
+                  deleteRecipe={handleDelete}
+                />
+              }
+            />
             <Route path="/recipes/:id"
               element={<RecipeDetail recipes={recipes} onDelete={handleDelete} />} />
             <Route path="/recipes/:id/edit"
@@ -106,7 +113,7 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
-        <toast richColors position="top-center" />
+        <Toaster richColors position="bottom-right" />
       </div>
     </BrowserRouter>
   )

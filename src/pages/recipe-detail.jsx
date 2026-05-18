@@ -11,27 +11,16 @@ const difficultyColor = {
   Hard: "bg-red-100 text-red-700 border-red-200",
 }
 
-export default function RecipeDetail() {
+export default function RecipeDetail({ recipes, onDelete }) {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { getRecipeById, deleteRecipe, loading } = useRecipes()
-  const recipe = getRecipeById(id)
+  
+  const recipe = recipes.find((r) => String(r.id) === String(id))
 
   const handleDelete = async () => {
     if (!window.confirm("Delete this recipe?")) return
     await deleteRecipe(Number(id))
     navigate("/recipes")
-  }
-
-  if (loading) {
-    return (
-      <div className="max-w-3xl mx-auto px-6 py-10 animate-pulse space-y-4">
-        <div className="h-8 bg-muted rounded w-1/3" />
-        <div className="h-64 bg-muted rounded-4xl" />
-        <div className="h-4 bg-muted rounded w-2/3" />
-        <div className="h-4 bg-muted rounded w-1/2" />
-      </div>
-    )
   }
 
   if (!recipe) {
@@ -71,7 +60,7 @@ export default function RecipeDetail() {
           <p className="text-muted-foreground mt-2 text-sm leading-relaxed">{recipe.description}</p>
         </div>
         <div className="flex gap-2 shrink-0">
-          <Link to={`/edit-recipe/${recipe.id}`}>
+          <Link to={`/recipes/${recipe.id}/edit`}>
             <Button variant="outline" size="sm" className="gap-1.5">
               <Pencil className="w-3.5 h-3.5" /> Edit
             </Button>

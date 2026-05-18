@@ -82,7 +82,7 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="gap-5 w-200">
       {/* Basic Info */}
       <Card>
         <CardHeader>
@@ -203,7 +203,7 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
             </Button>
           </div>
           {errors.ingredients && <p className="text-xs text-destructive">{errors.ingredients}</p>}
-          <div className="flex flex-wrap gap-2 min-h-8">
+          <div className="flex flex-wrap gap-2 mb-2 min-h-8">
             {form.ingredients.map((ing, i) => (
               <Badge key={i} variant="secondary" className="gap-1 pr-1">
                 {ing}

@@ -13,14 +13,13 @@ const difficultyColor = {
 
 export default function RecipeCard({ recipe, onDelete }) {
   return (
-    <Card className="group overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
-      {/* Image */}
+    <Card className="group overflow-hidden flex flex-col">
       <div className="relative overflow-hidden h-44 bg-muted">
         {recipe.image ? (
           <img
             src={recipe.image}
             alt={recipe.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
@@ -44,7 +43,6 @@ export default function RecipeCard({ recipe, onDelete }) {
 
       <CardContent className="flex flex-col gap-3 mt-auto">
         <Separator />
-        {/* Meta */}
         <div className="flex items-center gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-1">
             <Clock className="w-3.5 h-3.5" />
@@ -56,12 +54,11 @@ export default function RecipeCard({ recipe, onDelete }) {
           </span>
         </div>
 
-        {/* Actions */}
         <div className="flex gap-2">
           <Link to={`/recipes/${recipe.id}`} className="flex-1">
             <Button variant="outline" size="sm" className="w-full text-xs">View Recipe</Button>
           </Link>
-          <Link to={`/edit-recipe/${recipe.id}`}>
+          <Link to={`/recipes/${recipe.id}/edit`}>
             <Button variant="ghost" size="icon-sm">
               <Pencil className="w-3.5 h-3.5" />
             </Button>

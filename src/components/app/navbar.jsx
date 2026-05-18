@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { UtensilsCrossed, Plus } from "lucide-react"
+import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
@@ -14,10 +14,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
-            <UtensilsCrossed className="w-4 h-4 text-primary-foreground" />
-          </div>
-          <span className="font-heading font-semibold text-lg tracking-tight">CookIt</span>
+          <span className="font-semibold text-lg tracking-tight font-[Playfair_Display]"><span className="text-primary">Cook</span>It</span>
         </NavLink>
 
         {/* Nav links */}

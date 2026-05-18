@@ -4,18 +4,19 @@ import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useState } from "react"
 
-export default function Recipes() {
+export default function Recipes({ recipes = [], categories = [], loading, deleteRecipe }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
 
-  const filtered = destinations.filter((r) => {
-    const matchesSearch =
-      r.name.toLowerCase().includes(query.toLowerCase()) ||
-      r.category.toLowerCase().includes(query.toLowerCase());
+  const filtered = recipes.filter((r) => {
+    const matchesQuery =
+      query === "" ||
+      r.title.toLowerCase().includes(query.toLowerCase()) ||
+      r.description?.toLowerCase().includes(query.toLowerCase());
 
-    const matchesStatus = category === 'All' || r.category === category;
-    
-    return matchesSearch && matchesStatus;
+    const matchesCategory = category === 'All' || r.category === category;
+
+    return matchesQuery && matchesCategory;
   });
 
   return (
