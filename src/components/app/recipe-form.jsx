@@ -23,13 +23,40 @@ const badge = {
   Vegan: "bg-green-400 text-white",
 };
 
-export default function RecipeForm() {
+export default function RecipeForm({ onSubmit, existingData }) {
   const [form, setForm] = useState(emptyForm);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { id } = useParams();
   const isEdit = Boolean(id);
+
+  useEffect(() => {
+    if (existingData) setForm(existingData);
+  }, [existingData]);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!form.name.trim() || !form.category.trim()) {
+      setError('Recipe name and category are required.');
+      return;
+    }
+    setError('');
+    setLoading(true);
+    try {
+      await onSubmit(form);
+      navigate('/destinations');
+    } catch {
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 px-12 py-12 max-w-5xl mx-auto items-start font-[Inter]">
