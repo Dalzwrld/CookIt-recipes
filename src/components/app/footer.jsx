@@ -3,16 +3,16 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div>
-        <span className="uppercase">CookIt</span>
+    <footer className="mt-auto flex flex-row items-center justify-between">
+        <span className="uppercase text-md font-medium">CookIt</span>
         <span className="uppercase">
             Images by
-            <a href="">Unsplash</a>
+            <a href="https://unsplash.com/">Unsplash</a>
         </span>
         <span className="uppercase">
             <Copyright className="size-2" />
-            2026. Built with React.
+            2026. Built with React & Shadcn/ui.
         </span>
-    </div>
+    </footer>
   )
 }
