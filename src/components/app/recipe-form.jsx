@@ -83,13 +83,11 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
 
   return (
     <form onSubmit={handleSubmit} className="gap-5 w-200">
-      {/* Basic Info */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">Basic Information</CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Title */}
           <div className="sm:col-span-2 space-y-1.5">
             <Label htmlFor="title">Recipe Title</Label>
             <Input
@@ -102,7 +100,6 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
             {errors.title && <p className="text-xs text-destructive">{errors.title}</p>}
           </div>
 
-          {/* Category */}
           <div className="space-y-1.5">
             <Label>Category</Label>
             <Select value={form.category} onValueChange={(v) => set("category", v)}>
@@ -116,7 +113,6 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
             {errors.category && <p className="text-xs text-destructive">{errors.category}</p>}
           </div>
 
-          {/* Difficulty */}
           <div className="space-y-1.5">
             <Label>Difficulty</Label>
             <Select value={form.difficulty} onValueChange={(v) => set("difficulty", v)}>
@@ -130,7 +126,6 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
             {errors.difficulty && <p className="text-xs text-destructive">{errors.difficulty}</p>}
           </div>
 
-          {/* Duration */}
           <div className="space-y-1.5">
             <Label htmlFor="duration">Duration (minutes)</Label>
             <Input
@@ -144,7 +139,6 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
             {errors.duration && <p className="text-xs text-destructive">{errors.duration}</p>}
           </div>
 
-          {/* Servings */}
           <div className="space-y-1.5">
             <Label htmlFor="servings">Servings</Label>
             <Input
@@ -158,7 +152,6 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
             {errors.servings && <p className="text-xs text-destructive">{errors.servings}</p>}
           </div>
 
-          {/* Image */}
           <div className="sm:col-span-2 space-y-1.5">
             <Label htmlFor="image">Image URL <span className="text-muted-foreground text-xs">(optional)</span></Label>
             <Input
@@ -169,7 +162,6 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
             />
           </div>
 
-          {/* Description */}
           <div className="sm:col-span-2 space-y-1.5">
             <Label htmlFor="description">Description</Label>
             <Textarea
@@ -185,7 +177,6 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
         </CardContent>
       </Card>
 
-      {/* Ingredients */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">Ingredients</CardTitle>
@@ -216,7 +207,6 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
         </CardContent>
       </Card>
 
-      {/* Instructions */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">Instructions</CardTitle>
@@ -235,7 +225,6 @@ export default function RecipeForm({ initialData, onSubmit, isEditing = false })
 
       <Separator />
 
-      {/* Actions */}
       <div className="flex gap-3 justify-end">
         <Button type="button" variant="outline" onClick={() => navigate(-1)}>Cancel</Button>
         <Button type="submit" disabled={submitting}>

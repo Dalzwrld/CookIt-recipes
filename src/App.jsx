@@ -66,7 +66,7 @@ export default function App() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-screen gap-4">
-        <p className="font-[Inter] italic text-[#6b8fa8] text-[16px]">
+        <p className="font-[Inter] italic text-primary text-[16px]">
           Loading your recipes…
         </p>
       </div>
@@ -80,7 +80,7 @@ export default function App() {
           <p className="font-[Playfair_Display] text-[13px] tracking-[0.2em] text-[#A32D2D] mb-3">
             CONNECTION ERROR
           </p>
-          <p className="text-[#6b8fa8] max-w-md leading-relaxed">{error}</p>
+          <p className="text-[#1A1A1A] max-w-md leading-relaxed">{error}</p>
         </div>
       </div>
     )

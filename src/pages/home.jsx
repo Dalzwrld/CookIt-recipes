@@ -33,7 +33,6 @@ export default function Home({ recipes, loading, onDelete }) {
         </div>
       </section>
 
-      {/* Recent Recipes */}
       <section className="max-w-6xl mx-auto px-6 py-12 w-full">
         <div className="flex items-center justify-between mb-6">
           <div>

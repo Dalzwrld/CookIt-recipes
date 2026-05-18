@@ -37,19 +37,16 @@ export default function RecipeDetail({ recipes, onDelete }) {
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-10 w-full">
-      {/* Back */}
       <button onClick={() => navigate(-1)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
         <ArrowLeft className="w-4 h-4" /> Back
       </button>
 
-      {/* Hero Image */}
       {recipe.image && (
         <div className="rounded-4xl overflow-hidden h-64 sm:h-80 mb-8 bg-muted">
           <img src={recipe.image} alt={recipe.title} className="w-full h-full object-cover" />
         </div>
       )}
 
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
         <div className="flex-1">
           <div className="flex items-center gap-2 flex-wrap mb-2">
@@ -71,7 +68,6 @@ export default function RecipeDetail({ recipes, onDelete }) {
         </div>
       </div>
 
-      {/* Meta */}
       <div className="flex gap-6 text-sm text-muted-foreground mb-8">
         <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> {recipe.duration} minutes</span>
         <span className="flex items-center gap-1.5"><Users className="w-4 h-4" /> {recipe.servings} servings</span>
@@ -81,7 +77,6 @@ export default function RecipeDetail({ recipes, onDelete }) {
       <Separator className="mb-8" />
 
       <div className="grid sm:grid-cols-3 gap-8">
-        {/* Ingredients */}
         <div className="sm:col-span-1">
           <h2 className="font-heading font-semibold text-base mb-4">Ingredients</h2>
           <Card>
@@ -98,7 +93,6 @@ export default function RecipeDetail({ recipes, onDelete }) {
           </Card>
         </div>
 
-        {/* Instructions */}
         <div className="sm:col-span-2">
           <h2 className="font-heading font-semibold text-base mb-4">Instructions</h2>
           <div className="text-sm text-foreground leading-relaxed whitespace-pre-line bg-muted/40 rounded-2xl p-5 border border-border">

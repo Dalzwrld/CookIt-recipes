@@ -21,7 +21,6 @@ export default function Recipes({ recipes = [], categories = [], loading, delete
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10 w-full">
-      {/* Header */}
       <div className="mb-8">
         <h1 className="font-heading text-3xl font-semibold tracking-tight">All Recipes</h1>
         <p className="text-muted-foreground mt-1 text-sm">
@@ -29,7 +28,6 @@ export default function Recipes({ recipes = [], categories = [], loading, delete
         </p>
       </div>
 
-      {/* Search & Filter */}
       <div className="flex flex-col gap-4 mb-8">
         <Search
           query={query}
@@ -39,7 +37,6 @@ export default function Recipes({ recipes = [], categories = [], loading, delete
           categories={categories}
         />
 
-        {/* Category Tabs */}
         <div className="overflow-x-auto pb-1">
           <Tabs value={category} onValueChange={setCategory}>
             <TabsList className="w-max">
