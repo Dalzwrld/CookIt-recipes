@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 export default function Search({ query, setQuery, category, setCategory, categories = [] }) {
   return (
     <div className="flex flex-col sm:flex-row gap-3 w-full">
-      <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+      <SearchIcon className="absolute left-3 top-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
       <Input
         placeholder="Search recipes..."
         value={query}
