@@ -1,13 +1,22 @@
-// import { useRecipes } from "../hooks/useRecipes"
-// import { useSearch } from "../hooks/useSearch"
 import Search from "../components/app/search"
 import RecipeList from "../components/app/recipe-list"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState } from "react"
 
 export default function Recipes() {
-  const { recipes, loading, deleteRecipe } = useRecipes()
-  const { query, setQuery, category, setCategory, filtered, categories } = useSearch(recipes)
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("All");
+
+  const filtered = destinations.filter((r) => {
+    const matchesSearch =
+      r.name.toLowerCase().includes(query.toLowerCase()) ||
+      r.category.toLowerCase().includes(query.toLowerCase());
+
+    const matchesStatus = category === 'All' || r.category === category;
+    
+    return matchesSearch && matchesStatus;
+  });
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10 w-full">

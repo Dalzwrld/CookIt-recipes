@@ -5,13 +5,9 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import RecipeList from "../components/app/recipe-list"
-// import { useRecipes } from "../hooks/useRecipes"
-// import { useSearch } from "../hooks/useSearch"
 
-export default function Home() {
-  const { recipes, loading, deleteRecipe } = useRecipes()
-  const { filtered } = useSearch(recipes)
-  const recent = filtered.slice(0, 3)
+export default function Home({ recipes, loading, deleteRecipe }) {
+  const recent = recipes.slice(0, 3)
 
   return (
     <div className="flex flex-col">

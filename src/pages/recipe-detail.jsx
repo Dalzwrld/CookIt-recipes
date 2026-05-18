@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Card, CardContent } from "@/components/ui/card"
-// import { useRecipes } from "../hooks/useRecipes"
 
 const difficultyColor = {
   Easy: "bg-emerald-100 text-emerald-700 border-emerald-200",

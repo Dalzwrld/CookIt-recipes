@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { toast } from 'sonner'
 
 import Navbar from './components/app/navbar'
 import Footer from './components/app/footer'
@@ -7,6 +8,7 @@ import Home from './pages/home'
 import Recipes from './pages/recipes'
 import AddRecipe from './pages/add-recipe'
 import EditRecipe from './pages/edit-recipe'
+import RecipeDetail from './pages/recipe-detail'
 
 export default function App() {
   const [recipes, setRecipes] = useState([]);
@@ -20,7 +22,10 @@ export default function App() {
         return res.json();
       })
       .then(setRecipes)
-      .catch(() => setError('Could not connect to the server.'))
+      .catch(() => 
+        setError('Could not connect to the server.'),
+        toast.error("Could not load recipes.")
+    )
       .finally(() => setLoading(false));
   }, []);
 
@@ -35,6 +40,7 @@ export default function App() {
     if (!res.ok) throw new Error('Failed to add');
     const newRecipe = await res.json();
     setRecipes((prev) => [...prev, newRecipe]);
+    toast.success("Recipe added successfully!");
   }
 
   async function handleEdit(formData) {
@@ -48,12 +54,14 @@ export default function App() {
     if (!res.ok) throw new Error('Failed to update');
     const updated = await res.json();
     setRecipes((prev) => prev.map((r) => (r.id === updated.id ? updated : r)));
+    toast.success("Recipe updated successfully!");
   }
 
   async function handleDelete(id) {
     const res = await fetch(`${'http://localhost:3000/recipes'}/${id}`, { method: 'DELETE' });
     if (!res.ok) throw new Error('Failed to delete');
     setRecipes((prev) => prev.filter((r) => r.id !== id));
+    toast.success("Recipe deleted.");
   }
 
   if (loading) {
@@ -88,14 +96,17 @@ export default function App() {
             <Route path="/"
               element={<Home recipes={recipes} onDelete={handleDelete} />} />
             <Route path="/recipes"
-              element={<Recipes recipes={recipes} onDelete={handleDelete} />} />
+              element={<Recipes recipes={recipes} onEdit={handleEdit} onDelete={handleDelete} />} />
+            <Route path="/recipes/:id"
+              element={<RecipeDetail recipes={recipes} onDelete={handleDelete} />} />
             <Route path="/recipes/:id/edit"
               element={<EditRecipe recipes={recipes} onEdit={handleEdit} />} />
-            <Route path="/add"
+            <Route path="/add-recipe"
               element={<AddRecipe onAdd={handleAdd} />} />
           </Routes>
         </main>
         <Footer />
+        <toast richColors position="top-center" />
       </div>
     </BrowserRouter>
   )

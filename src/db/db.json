@@ -1,3 +1,23 @@
 {
-    "recipes": []
+  "recipes": [
+    {
+      "title": "Spaghetti Carbonara",
+      "category": "Pasta",
+      "duration": 30,
+      "servings": 3,
+      "difficulty": "Medium",
+      "description": "A beautiful and tasty delicacy from Italy.",
+      "image": "https://plus.unsplash.com/premium_photo-1664472619078-9db415ebef44?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c3BhZ2hldHRpJTIwY2FyYm9uYXJhfGVufDB8fDB8fHww",
+      "ingredients": [
+        "350g spaghetti",
+        "100g diced guanciale",
+        "3 large whole eggs",
+        "1 cup freshly grated Parmesan cheese",
+        "Freshly cracked black pepper (For taste)"
+      ],
+      "instructions": "1. Cook the pasta in a large pot of warm, salty water.\n2. Cook it till it's firm when biting.\n3. Dice your guanciale pork over medium-low heat, and cook till the fat renders and the pieces are golden and crispy.\n4. Turn the heat off.\n5. Whisk the sauce with the eggs, grated cheese and a good amount of the cracked black pepper.",
+      "id": "9sK3mELEZvk"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
